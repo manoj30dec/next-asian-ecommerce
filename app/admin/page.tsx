@@ -1,4 +1,19 @@
+
+"use client"
+import { LoginAction } from "@/actions/loginAction";
+import { useActionState } from "react";
+
 export default function Admin() {
+    // const loginEndPonit = "https://dummyjson.com/auth/login";
+    const [formState, action, isPending] = useActionState
+        (LoginAction, {
+            errors: {}
+        });
+
+    let username = !!formState.errors.username
+    let usernameMessage = formState.errors.username
+    console.log(usernameMessage)
+
     return (
         <>
             <div
@@ -12,7 +27,7 @@ export default function Admin() {
                 <div className="card-body p-4">
                     <h2 className="card-title text-center mb-4">Log In</h2>
 
-                    <form>
+                    <form noValidate action={action} >
                         {/* Username / Email */}
                         <div className="mb-3">
                             <label htmlFor="username" className="form-label">
@@ -23,8 +38,14 @@ export default function Admin() {
                                 className="form-control"
                                 id="username"
                                 placeholder="Enter username or email"
-                                required
+                                name="username"
+
                             />
+                            {
+                                username ? <span className="text-danger">
+                                    {usernameMessage}
+                                </span> : null
+                            }
                         </div>
 
                         {/* Password */}
@@ -37,7 +58,8 @@ export default function Admin() {
                                 className="form-control"
                                 id="password"
                                 placeholder="Enter password"
-                                required
+                                name="password"
+
                             />
                         </div>
 
