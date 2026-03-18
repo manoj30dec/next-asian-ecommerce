@@ -1,9 +1,10 @@
+import "./admin-sidebar.scss";
 export default function AdminSidebar() {
     return (
-        <div>
+        <div className="sidebar">
             <ul>
                 <li>
-                    Home
+                    Dashboard
                 </li>
                 <li>
                     Posts
