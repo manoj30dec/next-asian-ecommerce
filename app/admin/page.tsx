@@ -1,6 +1,6 @@
 
 "use client"
-import { LoginAction } from "@/actions/loginAction";
+import { LoginAction } from "@/app/actions/loginAction";
 import { useActionState } from "react";
 
 export default function Admin() {
