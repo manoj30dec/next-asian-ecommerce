@@ -10,9 +10,10 @@ export default function Admin() {
             errors: {}
         });
 
-    let username = !!formState.errors.username
-    let usernameMessage = formState.errors.username
-    console.log(usernameMessage)
+    let isUsername = !!formState?.errors.username;
+    let isUsernameMessage = formState?.errors.username;
+    let isPassword = !!formState?.errors.password;
+    let isPasswordMessage = formState?.errors.password;
 
     return (
         <>
@@ -42,8 +43,8 @@ export default function Admin() {
 
                             />
                             {
-                                username ? <span className="text-danger">
-                                    {usernameMessage}
+                                isUsername ? <span className="text-danger">
+                                    {isUsernameMessage}
                                 </span> : null
                             }
                         </div>
@@ -61,6 +62,11 @@ export default function Admin() {
                                 name="password"
 
                             />
+                            {
+                                isPassword ? <span className="text-danger">
+                                    {isPasswordMessage}
+                                </span> : null
+                            }
                         </div>
 
                         {/* Remember Me */}

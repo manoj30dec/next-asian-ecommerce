@@ -12,7 +12,15 @@ const loginValidationSchema = z.object({
         }, {
             message: "Invalid email address",
         }),
-    password: z.string().min(4, { message: "Password must be at least 4 charectors" }).trim()
+    // password: z.string().min(4, { message: "Password must be at least 4 charectors" }).trim()
+    password: z.string().trim().refine((val) => val !== "", {
+        message: "Please enter password",
+    }).refine((val) => {
+        if (val === "") return true; // skip length check
+        return val.length >= 4;
+    }, {
+        message: "Password must be at least 4 characters",
+    })
 })
 interface LoginFormState {
     errors: {
